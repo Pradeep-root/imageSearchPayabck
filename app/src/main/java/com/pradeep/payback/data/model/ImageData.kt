@@ -23,9 +23,6 @@ data class ImageData(
     val likes : Double?,
 
     @SerializedName("comments")
-    val comments : Double?,
-
-    @SerializedName("tags")
-    val tags : List<String>?
+    val comments : Double?
 
 )
