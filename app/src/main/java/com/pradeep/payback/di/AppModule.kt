@@ -1,6 +1,7 @@
 package com.pradeep.payback.di
 
 import android.content.Context
+import com.pradeep.payback.data.network.PixabayApi
 import com.pradeep.payback.utils.ConnectivityInterceptor
 import com.pradeep.payback.utils.Constants.Companion.BASE_URL
 import dagger.Module
@@ -32,5 +33,9 @@ object AppModule {
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl(BASE_URL)
         .build()
+
+    @Singleton
+    @Provides
+    fun providesPixabayApi(retrofit: Retrofit) = retrofit.create(PixabayApi::class.java)
 
 }

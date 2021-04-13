@@ -1,11 +1,12 @@
-package com.pradeep.payback
+package com.pradeep.payback.ui.imagedetail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.pradeep.payback.R
 
-class MainActivity : AppCompatActivity() {
+class ImageDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_image_detail)
     }
 }
