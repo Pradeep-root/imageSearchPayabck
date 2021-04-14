@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="search_img_card_height">88dp</dimen>
+    <dimen name="card_preview_width">100dp</dimen>
+    <dimen name="card_preview_height">56dp</dimen>
+    <dimen name="card_main_layout_top_margin">16dp</dimen>
+    <dimen name="card_main_layout_bottom_margin">16dp</dimen>
+    <dimen name="item_username_margin_start">20dp</dimen>
+    <dimen name="item_username_margin_end">16dp</dimen>
+    <dimen name="dp_0">0dp</dimen>
+</resources>
