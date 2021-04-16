@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Payback</string>
     <string name="no_internet_connection">No internet connection, Please check.</string>
+    <string name="image_details">Details</string>
 </resources>
