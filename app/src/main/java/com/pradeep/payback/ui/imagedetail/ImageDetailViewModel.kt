@@ -14,7 +14,7 @@ class ImageDetailViewModel  : ViewModel(){
      val imageLiveData : LiveData<ImageData> = _imageLiveData
 
     fun setSelectedImageData(imageData: ImageData){
-        _imageLiveData.postValue(imageData)
+        _imageLiveData.value = imageData
     }
 
 }

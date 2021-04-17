@@ -28,13 +28,13 @@ data class ImageData(
     val user : String?,
 
     @SerializedName("favorites")
-    val favorites : Double?,
+    val favorites : Long?,
 
     @SerializedName("likes")
-    val likes : Double?,
+    val likes : Long?,
 
     @SerializedName("comments")
-    val comments : Double?,
+    val comments : Long?,
 
     @SerializedName("userImageURL")
     val userImageURL : String?,

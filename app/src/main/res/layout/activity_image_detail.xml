@@ -9,143 +9,161 @@
             type="com.pradeep.payback.ui.imagedetail.ImageDetailViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.imagedetail.ImageDetailActivity">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_horizontal_half_screen"
-            app:layout_constraintGuide_percent="0.5"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_horizontal_user_name_border"
-            app:layout_constraintGuide_percent="0.58"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+           <ImageView
+               android:id="@+id/img_avatar"
+               android:layout_width="@dimen/avatar_width"
+               android:layout_height="@dimen/avatar_height"
+               android:layout_marginStart="@dimen/margin_normal"
+               android:layout_marginTop="@dimen/margin_small"
+               app:avatarUrl="@{viewModel.imageLiveData.userImageURL}"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               tools:src="@tools:sample/avatars" />
 
-        <ImageView
-            android:id="@+id/img_selected_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/guideline_horizontal_half_screen"
-            android:layout_width="match_parent"
-            android:layout_height="0dp" />
+           <TextView
+               android:id="@+id/tv_username"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="@dimen/margin_small"
+               android:ellipsize="end"
+               android:gravity="start|center_vertical"
+               android:singleLine="true"
+               android:text="@{viewModel.imageLiveData.user}"
+               style="?android:textViewStyle"
+               android:textSize="@dimen/text_size_medium"
+               android:fontFamily="@font/roboto_bold"
+               app:layout_constraintEnd_toEndOf="parent"
+               android:layout_marginTop="@dimen/margin_normal"
+               android:layout_marginEnd="@dimen/margin_normal"
+               app:layout_constraintStart_toEndOf="@id/img_avatar"
+               app:layout_constraintTop_toTopOf="parent"
+               tools:text="@tools:sample/first_names" />
 
-        <TextView
-            android:id="@+id/tv_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="Pradeepemc3"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_selected_image" />
+           <TextView
+               android:id="@+id/tv_tags"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="@dimen/margin_small"
+               android:layout_marginEnd="@dimen/margin_normal"
+               android:singleLine="true"
+               android:text="@{viewModel.imageLiveData.tags}"
+               app:layout_constraintStart_toEndOf="@id/img_avatar"
+               app:layout_constraintTop_toBottomOf="@id/tv_username"
+               android:textSize="@dimen/text_size_reguler"
+               android:fontFamily="@font/roboto_regular"
+               android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+               app:layout_constraintEnd_toEndOf="parent"
+               android:ellipsize="end"
+               android:gravity="start|center_vertical"
+               tools:text="@tools:sample/lorem/random" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_details"
-            app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_user_name_border"
-            android:layout_margin="2dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+           <ImageView
+               android:id="@+id/img_full"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/img_avatar"
+               android:layout_marginTop="@dimen/margin_small"
+               app:largeImageUrl="@{viewModel.imageLiveData.largeImageURL}"
+               app:progress="@{progress}"
+               app:thumbnailUrl="@{viewModel.imageLiveData.previewURL}"
+               android:adjustViewBounds="true"
+               android:scaleType="fitCenter"
+               tools:src="@tools:sample/backgrounds/scenic" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:padding="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+           <ProgressBar
+               android:id="@+id/progress"
+               style="@style/Widget.AppCompat.ProgressBar"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               app:layout_constraintBottom_toBottomOf="@id/img_full"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="@id/img_full" />
 
-                <TextView
-                    android:id="@+id/tv_likes"
-                    style="@style/DetailInfoText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="200"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_likes_lbl"
-                    app:layout_constraintStart_toStartOf="@id/tv_likes_lbl"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_likes_lbl"
-                    app:layout_constraintTop_toBottomOf="parent" />
+           <TextView
+               android:id="@+id/tv_likes"
+               style="@style/DetailInfoText"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@{String.valueOf(viewModel.imageLiveData.likes)}"
+               android:layout_marginTop="@dimen/margin_small"
+               app:layout_constraintBottom_toTopOf="@+id/tv_likes_lbl"
+               app:layout_constraintStart_toStartOf="@id/tv_likes_lbl"
+               app:layout_constraintEnd_toEndOf="@+id/tv_likes_lbl"
+               app:layout_constraintTop_toBottomOf="@+id/img_full" />
 
-                <TextView
-                    android:id="@+id/tv_favorites"
-                    style="@style/DetailInfoText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_favorites_lbl"
-                    app:layout_constraintStart_toStartOf="@+id/tv_favorites_lbl"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_favorites_lbl"
-                    app:layout_constraintTop_toTopOf="parent" />
+           <TextView
+               android:id="@+id/tv_favorites"
+               style="@style/DetailInfoText"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@{String.valueOf(viewModel.imageLiveData.favorites)}"
+               android:layout_marginTop="@dimen/margin_small"
+               app:layout_constraintBottom_toTopOf="@+id/tv_favorites_lbl"
+               app:layout_constraintStart_toStartOf="@+id/tv_favorites_lbl"
+               app:layout_constraintEnd_toEndOf="@+id/tv_favorites_lbl"
+               app:layout_constraintTop_toBottomOf="@+id/img_full" />
 
-                <TextView
-                    android:id="@+id/tv_comments"
-                    style="@style/DetailInfoText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_comments_lbl"
-                    app:layout_constraintStart_toStartOf="@+id/tv_comments_lbl"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_comments_lbl"
-                    app:layout_constraintTop_toTopOf="parent" />
+           <TextView
+               android:id="@+id/tv_comments"
+               style="@style/DetailInfoText"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@{String.valueOf(viewModel.imageLiveData.comments)}"
+               android:layout_marginTop="@dimen/margin_small"
+               app:layout_constraintBottom_toTopOf="@+id/tv_comments_lbl"
+               app:layout_constraintStart_toStartOf="@+id/tv_comments_lbl"
+               app:layout_constraintEnd_toEndOf="@+id/tv_comments_lbl"
+               app:layout_constraintTop_toBottomOf="@+id/img_full" />
 
-                <TextView
-                    android:id="@+id/tv_likes_lbl"
-                    style="@style/DetailInfoLblText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/likes_lbl"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_favorites_lbl"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_likes" />
+           <TextView
+               android:id="@+id/tv_likes_lbl"
+               style="@style/DetailInfoLblText"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/likes_lbl"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toStartOf="@+id/tv_favorites_lbl"
+               app:layout_constraintHorizontal_bias="0.5"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/tv_likes" />
 
-                <TextView
-                    android:id="@+id/tv_favorites_lbl"
-                    style="@style/DetailInfoLblText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/favorites_lbl"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_comments_lbl"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_likes_lbl"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_favorites" />
+           <TextView
+               android:id="@+id/tv_favorites_lbl"
+               style="@style/DetailInfoLblText"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/favorites_lbl"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toStartOf="@+id/tv_comments_lbl"
+               app:layout_constraintHorizontal_bias="0.5"
+               app:layout_constraintStart_toEndOf="@+id/tv_likes_lbl"
+               app:layout_constraintTop_toBottomOf="@+id/tv_favorites" />
 
-                <TextView
-                    android:id="@+id/tv_comments_lbl"
-                    style="@style/DetailInfoLblText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/comments_lbl"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/tv_favorites_lbl"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_comments" />
+           <TextView
+               android:id="@+id/tv_comments_lbl"
+               style="@style/DetailInfoLblText"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/comments_lbl"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.5"
+               app:layout_constraintStart_toEndOf="@+id/tv_favorites_lbl"
+               app:layout_constraintTop_toBottomOf="@+id/tv_comments" />
 
+       </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/flexBoxLayout"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:alignContent="flex_start"
-            app:alignItems="flex_start"
-            app:flexWrap="wrap"
-            app:layout_constraintTop_toBottomOf="@+id/card_details"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

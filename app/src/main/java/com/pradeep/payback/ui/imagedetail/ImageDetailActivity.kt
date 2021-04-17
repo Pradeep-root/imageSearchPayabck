@@ -2,12 +2,15 @@ package com.pradeep.payback.ui.imagedetail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.backbase.assignment.util.Status
 import com.pradeep.payback.R
 import com.pradeep.payback.data.model.ImageData
+import com.pradeep.payback.databinding.ActivityImageDetailBinding
 import com.pradeep.payback.utils.Constants.Companion.IMG_DATA_PUT_EXTRA_KEY
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,12 +18,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class ImageDetailActivity : AppCompatActivity() {
 
     private lateinit var viewModel : ImageDetailViewModel
+    private lateinit var binding: ActivityImageDetailBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_image_detail)
+         binding = DataBindingUtil.setContentView(this, R.layout.activity_image_detail)
+         viewModel = ViewModelProvider(this).get(ImageDetailViewModel::class.java)
 
-        viewModel = ViewModelProvider(this).get(ImageDetailViewModel::class.java)
+        binding.viewModel = viewModel
 
         setupActionBar()
         getPutExtraArgument()
@@ -38,6 +44,7 @@ class ImageDetailActivity : AppCompatActivity() {
         val imageData =  intent.getParcelableExtra<ImageData>(IMG_DATA_PUT_EXTRA_KEY)
         imageData?.let {
             viewModel.setSelectedImageData(it)
+            Log.i("imageDATA", it.toString())
         }
     }
 
