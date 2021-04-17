@@ -2,4 +2,8 @@
     <string name="app_name">Payback</string>
     <string name="no_internet_connection">No internet connection, Please check.</string>
     <string name="image_details">Details</string>
+    <string name="likes_lbl">likes</string>
+    <string name="favorites_lbl">favorites</string>
+    <string name="comments_lbl">comments</string>
+    <string name="search_hint">Search</string>
 </resources>

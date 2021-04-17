@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="search_img_card_height">88dp</dimen>
-    <dimen name="card_preview_width">100dp</dimen>
-    <dimen name="card_preview_height">56dp</dimen>
-    <dimen name="card_main_layout_top_margin">16dp</dimen>
-    <dimen name="card_main_layout_bottom_margin">16dp</dimen>
+    <dimen name="card_preview_width">150dp</dimen>
+    <dimen name="card_preview_height">90dp</dimen>
+    <dimen name="card_main_layout_top_padding">8dp</dimen>
+    <dimen name="card_main_layout_bottom_padding">8dp</dimen>
     <dimen name="item_username_margin_start">20dp</dimen>
     <dimen name="item_username_margin_end">16dp</dimen>
     <dimen name="dp_0">0dp</dimen>
     <dimen name="username_text_size">20sp</dimen>
+    <dimen name="img_item_start_margin">8dp</dimen>
+
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="avatar_width">48dp</dimen>
+    <dimen name="avatar_height">48dp</dimen>
+    <dimen name="padding_samll">8dp</dimen>
+    <dimen name="margin_mini">4dp</dimen>
 </resources>

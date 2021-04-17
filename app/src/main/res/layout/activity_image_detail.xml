@@ -104,7 +104,7 @@
                 style="@style/DetailInfoLblText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="likes"
+                android:text="@string/likes_lbl"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_favorites_lbl"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -116,7 +116,7 @@
                 style="@style/DetailInfoLblText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="favorites"
+                android:text="@string/favorites_lbl"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_comments_lbl"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -128,7 +128,7 @@
                 style="@style/DetailInfoLblText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="comments"
+                android:text="@string/comments_lbl"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -140,7 +140,6 @@
 
 
     </com.google.android.material.card.MaterialCardView>
-
 
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/flexBoxLayout"
