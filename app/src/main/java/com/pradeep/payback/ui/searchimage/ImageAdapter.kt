@@ -1,11 +1,14 @@
 package com.pradeep.payback.ui.searchimage
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pradeep.payback.data.model.ImageData
 import com.pradeep.payback.databinding.ImgSearchItemBinding
+import com.pradeep.payback.ui.imagedetail.ImageDetailActivity
+import com.pradeep.payback.utils.Constants.Companion.IMG_DATA_PUT_EXTRA_KEY
 
 class ImageAdapter(val imageList : ArrayList<ImageData>) : RecyclerView.Adapter<ImageAdapter.ViewHolder>(){
 
@@ -24,7 +27,10 @@ class ImageAdapter(val imageList : ArrayList<ImageData>) : RecyclerView.Adapter<
         val imageData = imageList[position]
         holder.binding.imgData = imageData
         holder.binding.cardView.setOnClickListener {
-            //TODO open activity
+            Intent(context, ImageDetailActivity::class.java).apply {
+                putExtra(IMG_DATA_PUT_EXTRA_KEY, imageData)
+                context.startActivity(this)
+            }
         }
     }
 

@@ -29,6 +29,7 @@
                android:hint="@string/search_hint"
                android:imeOptions="actionSearch"
                android:inputType="text"
+               android:text="@string/text_fruits"
                android:padding="@dimen/padding_samll"
                android:layout_margin="@dimen/margin_mini"
                android:selectAllOnFocus="true"

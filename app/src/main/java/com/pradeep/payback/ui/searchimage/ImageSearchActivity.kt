@@ -29,10 +29,12 @@ class ImageSearchActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(ImageSearchViewModel::class.java)
         setupImageSearchObserver()
-        viewModel.searchImage("fruits")
 
         initUi()
         actionListeners()
+
+        viewModel.searchImage(getString(R.string.text_fruits))
+
 
     }
 

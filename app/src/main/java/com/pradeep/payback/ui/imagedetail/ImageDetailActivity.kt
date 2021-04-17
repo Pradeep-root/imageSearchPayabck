@@ -6,6 +6,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.backbase.assignment.util.Status
 import com.pradeep.payback.R
+import com.pradeep.payback.data.model.ImageData
+import com.pradeep.payback.utils.Constants.Companion.IMG_DATA_PUT_EXTRA_KEY
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,27 +21,12 @@ class ImageDetailActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(ImageDetailViewModel::class.java)
 
-        setupImageDetailObserver()
+        val imageData =  intent.getParcelableExtra<ImageData>(IMG_DATA_PUT_EXTRA_KEY)
+
+        imageData?.let {
+            viewModel.setSelectedImageData(it)
+        }
+
     }
 
-    private fun setupImageDetailObserver() {
-        viewModel.imageDetailsLiveData.observe(this, Observer {
-            it?.let { resource ->
-                when(resource.status){
-                    Status.LOADING ->{
-
-                    }
-
-                    Status.SUCCESS ->{
-
-                    }
-
-                    Status.ERROR ->{
-
-                    }
-                }
-
-            }
-        })
-    }
 }

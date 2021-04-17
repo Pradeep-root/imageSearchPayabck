@@ -6,4 +6,5 @@
     <string name="favorites_lbl">favorites</string>
     <string name="comments_lbl">comments</string>
     <string name="search_hint">Search Image</string>
+    <string name="text_fruits">fruits</string>
 </resources>

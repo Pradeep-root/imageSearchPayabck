@@ -1,5 +1,6 @@
 package com.pradeep.payback.ui.searchimage
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,13 +15,17 @@ import javax.inject.Inject
 class ImageSearchViewModel @Inject constructor(var repository: ImageRepository) : ViewModel(){
 
 
-    val searchImageLiveData = MutableLiveData<Resource<ImageResponse>>()
+   private val _searchImageLiveData = MutableLiveData<Resource<ImageResponse>>() // not accessible from outside
+
+    val searchImageLiveData : LiveData<Resource<ImageResponse>> = _searchImageLiveData
 
     fun searchImage(searchText : String){
-        searchImageLiveData.postValue(Resource.loading())
+        _searchImageLiveData.postValue(Resource.loading())
+
         viewModelScope.launch {
           val result =  repository.searchImage(searchText)
-            searchImageLiveData.postValue(result)
+            _searchImageLiveData.postValue(result)
+
         }
     }
 }
