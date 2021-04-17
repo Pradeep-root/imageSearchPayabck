@@ -3,6 +3,7 @@ package com.pradeep.payback.ui.searchimage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.backbase.assignment.util.Status
 import com.google.android.material.snackbar.Snackbar
 import com.pradeep.payback.R
+import com.pradeep.payback.utils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_image_search.*
 
@@ -31,17 +33,17 @@ class ImageSearchActivity : AppCompatActivity() {
         setupImageSearchObserver()
 
         initUi()
-        actionListeners()
-
+        searchBarAction()
         viewModel.searchImage(getString(R.string.text_fruits))
-
 
     }
 
-    private fun actionListeners() {
+
+    private fun searchBarAction() {
         tv_search_bar.setOnEditorActionListener { v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
                 viewModel.searchImage(tv_search_bar.text.toString())
+                v.hideKeyboard()
                 true
             }else{
               false

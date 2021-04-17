@@ -25,18 +25,4 @@ class ImageRepositoryImpl @Inject constructor(val pixabayApi: PixabayApi) : Imag
         }
     }
 
-    override suspend fun getDetails(imgId: Int) : Resource<ImageResponse> {
-        return try {
-            val response = pixabayApi.getDetails(imgId = imgId)
-            val result = response.body()
-
-            if(response.isSuccessful && result != null){
-                Resource.success(result)
-            }else{
-                Resource.error(response.message(), null)
-            }
-        }catch (e : IOException){
-            Resource.error(e.message.toString(), null)
-        }
-    }
 }

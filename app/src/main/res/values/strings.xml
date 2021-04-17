@@ -7,4 +7,7 @@
     <string name="comments_lbl">comments</string>
     <string name="search_hint">Search Image</string>
     <string name="text_fruits">fruits</string>
+    <string name="confirmation_dialog_to_open_detail">Do you want to open more details?</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
 </resources>
