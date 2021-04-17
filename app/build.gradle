@@ -69,4 +69,7 @@ dependencies {
 
     //flexbox (made by Google) tags display on detail screen
     implementation 'com.google.android:flexbox:2.0.1'
+
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 }

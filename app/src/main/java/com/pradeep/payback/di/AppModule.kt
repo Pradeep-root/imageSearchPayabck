@@ -34,6 +34,7 @@ object AppModule {
         .Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .baseUrl(BASE_URL)
+        .client(okHttpClient)
         .build()
 
     @Singleton

@@ -17,4 +17,7 @@
     <dimen name="avatar_height">48dp</dimen>
     <dimen name="padding_samll">8dp</dimen>
     <dimen name="margin_mini">4dp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_reguler">14sp</dimen>
+    <dimen name="padding_micro">2dp</dimen>
 </resources>

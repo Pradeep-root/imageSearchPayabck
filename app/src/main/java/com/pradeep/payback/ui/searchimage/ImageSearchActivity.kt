@@ -3,12 +3,15 @@ package com.pradeep.payback.ui.searchimage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.backbase.assignment.util.Status
+import com.google.android.material.snackbar.Snackbar
 import com.pradeep.payback.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_image_search.*
@@ -17,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_image_search.*
 class ImageSearchActivity : AppCompatActivity() {
 
     lateinit var viewModel : ImageSearchViewModel
-    lateinit var imageSearchAdapter: ImageSearchAdapter
+    lateinit var imageAdapter: ImageAdapter
     val TAG = ImageSearchActivity::class.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,15 +32,33 @@ class ImageSearchActivity : AppCompatActivity() {
         viewModel.searchImage("fruits")
 
         initUi()
+        actionListeners()
+
+    }
+
+    private fun actionListeners() {
+        tv_search_bar.setOnEditorActionListener { v, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                viewModel.searchImage(tv_search_bar.text.toString())
+                true
+            }else{
+              false
+            }
+        }
     }
 
     private fun initUi() {
-        imageSearchAdapter = ImageSearchAdapter(arrayListOf());
+        imageAdapter = ImageAdapter(arrayListOf());
         with(rv_search_feeds) {
             layoutManager = GridLayoutManager(this@ImageSearchActivity, resources.getInteger(R.integer.rv_span_count))
-            adapter = imageSearchAdapter
+            val dividerItemDecorator = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+            getDrawable(R.drawable.image_item_devider)?.let { dividerItemDecorator.setDrawable(it) }
+            addItemDecoration(dividerItemDecorator)
+            adapter = imageAdapter
             setHasFixedSize(true)
         }
+
+        swipe_Layout.isEnabled = false
     }
 
     private fun setupImageSearchObserver() {
@@ -46,18 +67,27 @@ class ImageSearchActivity : AppCompatActivity() {
                 when(resource.status){
                     Status.SUCCESS -> {
                         Log.i(TAG, resource.data.toString())
-                        it.data?.hits?.let { imageData -> imageSearchAdapter.updateList(imageData) }
+                        swipe_Layout.isRefreshing = false
+                        it.data?.hits?.let { imageData -> imageAdapter.updateList(imageData) }
                     }
 
                     Status.ERROR ->{
                         Log.i(TAG, resource.message.toString())
+                        swipe_Layout.isRefreshing = false
+                        tv_error_msg.text = resource.message.toString()
+                        coordinator_main_layout.snakeBar(resource.message.toString(), Snackbar.LENGTH_LONG)
                     }
 
                     Status.LOADING ->{
                         Log.i(TAG, resource.status.toString())
+                        swipe_Layout.isRefreshing = true
                     }
                 }
             }
         })
+    }
+
+    fun View.snakeBar(message: String, duration: Int = Snackbar.LENGTH_LONG){
+        Snackbar.make(this, message, duration).show()
     }
 }

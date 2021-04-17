@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="imgDaga"
+            name="imgData"
             type="com.pradeep.payback.data.model.ImageData" />
 
     </data>
@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="4dp"
         app:cardElevation="2dp"
         android:layout_margin="@dimen/margin_small"
         android:clickable="true"
@@ -27,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <ImageView
                 android:id="@+id/img_thumbnail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -35,15 +34,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:adjustViewBounds="true"
+                app:thumbNail="@{imgData.previewURL}"
                 android:scaleType="fitCenter"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <ImageView
                 android:id="@+id/img_avatar"
                 android:layout_width="@dimen/avatar_width"
                 android:layout_height="@dimen/avatar_height"
                 android:layout_marginStart="@dimen/margin_normal"
                 android:layout_marginTop="@dimen/margin_normal"
+                app:avatarUrl="@{imgData.userImageURL}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_thumbnail"
                 tools:src="@tools:sample/avatars" />
@@ -53,12 +54,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_small"
-                android:text="@{imgDaga.user}"
+                android:text="@{imgData.user}"
                 android:ellipsize="end"
                 android:gravity="start|center_vertical"
                 android:singleLine="true"
                 style="?android:textViewStyle"
-                android:fontFamily="@font/roboto_regular"
+                android:textSize="@dimen/text_size_medium"
+                android:fontFamily="@font/roboto_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/margin_normal"
                 android:layout_marginEnd="@dimen/margin_normal"
@@ -73,9 +75,11 @@
                 android:layout_marginStart="@dimen/margin_small"
                 android:layout_marginEnd="@dimen/margin_normal"
                 android:singleLine="true"
+                android:text="@{imgData.tags}"
                 app:layout_constraintStart_toEndOf="@id/img_avatar"
                 app:layout_constraintTop_toBottomOf="@id/tv_username"
-                android:fontFamily="@font/roboto_thin"
+                android:textSize="@dimen/text_size_reguler"
+                android:fontFamily="@font/roboto_regular"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:ellipsize="end"
