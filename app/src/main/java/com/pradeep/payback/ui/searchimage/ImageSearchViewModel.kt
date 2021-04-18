@@ -19,13 +19,13 @@ class ImageSearchViewModel @Inject constructor(var repository: ImageRepository) 
     val searchImageLiveData : LiveData<Resource<ImageResponse>> = _searchImageLiveData
 
     init {
-        searchImage(DEFAULT_SEARCH_QUERY)
+       searchImage(DEFAULT_SEARCH_QUERY)
     }
 
     fun searchImage(searchText : String){
         _searchImageLiveData.postValue(Resource.loading())
 
-        viewModelScope.launch {
+        viewModelScope.launch{
           val result =  repository.searchImage(searchText)
             _searchImageLiveData.postValue(result)
         }

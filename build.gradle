@@ -5,8 +5,11 @@ buildscript {
     ext.hilt_version = '2.33-beta'
     ext.retrofit_version = '2.6.0'
     ext.glide_version = "4.12.0"
+    ext.coroutines_version = '1.1.1'
     ext.interceptor_version = '4.5.0'
+
     repositories {
+        mavenCentral()
         google()
         jcenter()
     }
@@ -22,6 +25,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         google()
         jcenter()
     }
