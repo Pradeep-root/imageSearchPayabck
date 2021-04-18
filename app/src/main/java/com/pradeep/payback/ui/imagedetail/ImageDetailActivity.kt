@@ -1,13 +1,11 @@
 package com.pradeep.payback.ui.imagedetail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.backbase.assignment.util.Status
 import com.pradeep.payback.R
 import com.pradeep.payback.data.model.ImageData
 import com.pradeep.payback.databinding.ActivityImageDetailBinding
