@@ -1,11 +1,10 @@
 package com.pradeep.payback.ui.searchimage
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -17,6 +16,7 @@ import com.pradeep.payback.R
 import com.pradeep.payback.utils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_image_search.*
+
 
 @AndroidEntryPoint
 class ImageSearchActivity : AppCompatActivity() {
@@ -54,7 +54,10 @@ class ImageSearchActivity : AppCompatActivity() {
     private fun initUi() {
         imageAdapter = ImageAdapter(arrayListOf());
         with(rv_search_feeds) {
-            layoutManager = GridLayoutManager(this@ImageSearchActivity, resources.getInteger(R.integer.rv_span_count))
+            layoutManager = GridLayoutManager(
+                this@ImageSearchActivity,
+                resources.getInteger(R.integer.rv_span_count)
+            )
             val dividerItemDecorator = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
             getDrawable(R.drawable.image_item_devider)?.let { dividerItemDecorator.setDrawable(it) }
             addItemDecoration(dividerItemDecorator)
@@ -68,21 +71,24 @@ class ImageSearchActivity : AppCompatActivity() {
     private fun setupImageSearchObserver() {
         viewModel.searchImageLiveData.observe(this, Observer {
             it?.let { resource ->
-                when(resource.status){
+                when (resource.status) {
                     Status.SUCCESS -> {
                         Log.i(TAG, resource.data.toString())
                         swipe_Layout.isRefreshing = false
                         it.data?.hits?.let { imageData -> imageAdapter.updateList(imageData) }
                     }
 
-                    Status.ERROR ->{
+                    Status.ERROR -> {
                         Log.i(TAG, resource.message.toString())
                         swipe_Layout.isRefreshing = false
                         tv_error_msg.text = resource.message.toString()
-                        coordinator_main_layout.snakeBar(resource.message.toString(), Snackbar.LENGTH_LONG)
+                        coordinator_main_layout.snakeBar(
+                            resource.message.toString(),
+                            Snackbar.LENGTH_LONG
+                        )
                     }
 
-                    Status.LOADING ->{
+                    Status.LOADING -> {
                         Log.i(TAG, resource.status.toString())
                         swipe_Layout.isRefreshing = true
                     }
