@@ -35,7 +35,6 @@ class ImageSearchActivity : AppCompatActivity() {
 
         initUi()
         searchBarAction()
-        viewModel.searchImage(getString(R.string.text_fruits))
 
     }
 
