@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.backbase.assignment.util.Resource
-import com.pradeep.payback.R
 import com.pradeep.payback.data.model.ImageResponse
 import com.pradeep.payback.repository.ImageRepository
 import com.pradeep.payback.utils.Constants.Companion.DEFAULT_SEARCH_QUERY
@@ -29,7 +28,6 @@ class ImageSearchViewModel @Inject constructor(var repository: ImageRepository) 
         viewModelScope.launch {
           val result =  repository.searchImage(searchText)
             _searchImageLiveData.postValue(result)
-
         }
     }
 }

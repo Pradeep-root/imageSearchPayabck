@@ -1,7 +1,6 @@
 package com.pradeep.payback.ui.searchimage
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.backbase.assignment.util.Status
 import com.google.android.material.snackbar.Snackbar
 import com.pradeep.payback.R
+import com.pradeep.payback.utils.hide
 import com.pradeep.payback.utils.hideKeyboard
+import com.pradeep.payback.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_image_search.*
 
@@ -73,23 +74,28 @@ class ImageSearchActivity : AppCompatActivity() {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        Log.i(TAG, resource.data.toString())
+                        tv_error_msg.hide()
                         swipe_Layout.isRefreshing = false
-                        it.data?.hits?.let { imageData -> imageAdapter.updateList(imageData) }
+                        it.data?.hits?.let { imageData ->
+                            if(imageData.isNotEmpty()){
+                                imageAdapter.updateList(imageData)
+                            }else{
+                                coordinator_main_layout.snakeBar(getString(R.string.empty_response)
+                                    , Snackbar.LENGTH_LONG)
+                            }
+                        }
                     }
 
                     Status.ERROR -> {
-                        Log.i(TAG, resource.message.toString())
                         swipe_Layout.isRefreshing = false
+                        tv_error_msg.show()
                         tv_error_msg.text = resource.message.toString()
-                        coordinator_main_layout.snakeBar(
-                            resource.message.toString(),
-                            Snackbar.LENGTH_LONG
-                        )
+                        imageAdapter.updateList(mutableListOf())
+                        coordinator_main_layout.snakeBar(resource.message.toString(), Snackbar.LENGTH_LONG)
                     }
 
                     Status.LOADING -> {
-                        Log.i(TAG, resource.status.toString())
+                        tv_error_msg.hide()
                         swipe_Layout.isRefreshing = true
                     }
                 }
