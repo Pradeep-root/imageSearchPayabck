@@ -7,6 +7,7 @@
 - Search feature screen and Detail screen
 - Cache the result 
 - Default fruits search triggers
+- Unit testing using Mockk
 - Required handling
  
  ### Libraries and Jetpack component
