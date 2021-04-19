@@ -74,7 +74,7 @@ class ImageSearchActivity : AppCompatActivity() {
                 when (resource.status) {
                     Status.SUCCESS -> {
                         tv_error_msg.hide()
-                        swipe_Layout.isRefreshing = false
+                        showProgress(false)
                         it.data?.hits?.let { imageData ->
                             if(imageData.isNotEmpty()){
                                 imageAdapter.updateList(imageData)
@@ -86,7 +86,7 @@ class ImageSearchActivity : AppCompatActivity() {
                     }
 
                     Status.ERROR -> {
-                        swipe_Layout.isRefreshing = false
+                        showProgress(false)
                         tv_error_msg.show()
                         tv_error_msg.text = resource.message.toString()
                         imageAdapter.updateList(mutableListOf())
@@ -95,7 +95,7 @@ class ImageSearchActivity : AppCompatActivity() {
 
                     Status.LOADING -> {
                         tv_error_msg.hide()
-                        swipe_Layout.isRefreshing = true
+                        showProgress(true)
                     }
                 }
             }
@@ -104,5 +104,9 @@ class ImageSearchActivity : AppCompatActivity() {
 
     fun View.snakeBar(message: String, duration: Int = Snackbar.LENGTH_LONG){
         Snackbar.make(this, message, duration).show()
+    }
+
+    private fun showProgress(status: Boolean){
+        swipe_Layout.isRefreshing = status
     }
 }
