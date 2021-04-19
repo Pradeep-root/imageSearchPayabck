@@ -10,7 +10,7 @@
 - Required handling
  
  ### Libraries and Jetpack component
-- **_Retrofit_ (Netowrk Request)** : Retrofit is a REST Client for Java and Android. It makes it relatively easy to retrieve and upload JSON (or other structured data) via a REST based webservice. In Retrofit you configure which converter is used for the data serialization. Typically for JSON you use GSon.
+- **_Retrofit_ (Network Request)** : Retrofit is a REST Client for Java and Android. It makes it relatively easy to retrieve and upload JSON (or other structured data) via a REST based webservice. In Retrofit you configure which converter is used for the data serialization. Typically for JSON you use GSon.
 
 - **_Coroutines_(Handling asynchronous calls)**: For asynchronous or non-blocking programming. When creating server-side, mobile applications, it's important to provide an experience that is not only fluid from the user's perspective, but scalable when needed.
 
