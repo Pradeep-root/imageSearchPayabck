@@ -7,8 +7,8 @@
 - Search feature screen and Detail screen
 - Cache the result 
 - Default fruits search triggers
-- Unit testing using Mockk
 - Required handling
+- Unit testing using Mockk
  
  ### Libraries and Jetpack component
 - **_Retrofit_ (Network Request)** : Retrofit is a REST Client for Java and Android. It makes it relatively easy to retrieve and upload JSON (or other structured data) via a REST based webservice. In Retrofit you configure which converter is used for the data serialization. Typically for JSON you use GSon.
