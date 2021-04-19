@@ -7,7 +7,7 @@
 - Search feature screen and Detail screen
 - Cache the result 
 - Default fruits search triggers
-- Required handlings
+- Required handling
  
  ### Libraries and Jetpack component
 - **_Retrofit_ (Netowrk Request)** : Retrofit is a REST Client for Java and Android. It makes it relatively easy to retrieve and upload JSON (or other structured data) via a REST based webservice. In Retrofit you configure which converter is used for the data serialization. Typically for JSON you use GSon.
@@ -16,17 +16,17 @@
 
 - **_Dagger-Hilt_(Dependency injection)** : For dependency injection.
 
-- **_LiveData_** : Sharing data anywhere in the class by using observer methedology.
+- **_LiveData_** : Sharing data anywhere in the class by using observer methodology.
 
-- **_okhttp3 interceptor_(Caching response)** :  Retrofit uses the OkHttp library for HTTP requests and interceptor is used for response, caching network expetions handling and debugging. 
+- **_okhttp3 interceptor_(Caching response)** :  Retrofit uses the OkHttp library for HTTP requests and interceptor is used for response, caching network exceptions handling and debugging. 
 
 - **_Glide_** : Glide is an Image Loader Library for Android developed by bumptech and is a library that is recommended by Google. It has been used in many Google open source projects including Google official application. One of the key features of successful and effective image loading is caching.
 
-- **_Mockk_** : For testing it is new and easy test envoirnment that reducess lots of boiler code. 
+- **_Mockk_** : For testing it is new and easy test environment that reduces lots of boiler code. 
 
-- **_Truth_** : For asserting the result this is good and easy library provied by Google.
+- **_Truth_** : For asserting the result this is good and easy library provide by Google.
 
-## Handlings
+## Handling
 - Shown loading data event handling during web call.
 - Portrait and landscape screen support.
 - Web Error handling.
